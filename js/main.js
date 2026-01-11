@@ -36,7 +36,8 @@ const build = {
 			p.appendChild(span);
 		}
 		function appendAfterMatch() {
-			if (lastIndex >= text.length) return;
+			if (!text) return;
+			if (lastIndex >= text?.length ?? 0) return;
 			p.appendChild(document.createTextNode(text.slice(lastIndex)));
 		}
 	},

@@ -195,6 +195,7 @@ const iconLibrary = {
 	menu: {src: "assets/icons/menu.png", alt: "Ícone de menu"},
 	phone: {src: "assets/icons/phone.png", alt: "Ícone de telefone"},
 	pin: {src: "assets/icons/pin.png", alt: "Ícone de pin"},
+	smallLogo: {src: "assets/icons/smallLogo.webp", alt: "Logotipo"},
 	whatsapp: {src: "assets/icons/whatsapp.png", alt: "Ícone do Whatsapp"},
 	world: {src: "assets/icons/world.png", alt: "Ícone do planeta Terra"},
 	youtube: {src: "assets/icons/youtube.png", alt: "Ícone do Youtube"},
@@ -271,27 +272,26 @@ const textLibrary = {
 		welcome: {
 			header: "Seja bem-vindo(a)!",
 			subheader: "Sou Sabina Maria Stedile, psicóloga clínica, pesquisadora e especialista em neuropsicologia",
-			content:
-				"Trabalho com avaliação neuropsicológica de pacientes a partir dos dois anos de idade, e com psicoterapia individual de orientação psicanalítica.",
+			/* content:
+				"Trabalho com avaliação neuropsicológica de pacientes a partir dos dois anos de idade, e com psicoterapia individual de orientação psicanalítica.", */
 			button: ["Agende sua consulta!", linkLibrary.external.whatsapp],
 		},
 		wellBeing: {
 			header: "Sua saúde e bem-estar são importantes",
 			text: [
-				"Acredito que cada pessoa carrega uma história única, e meu compromisso é acolher essa história com respeito, escuta atenta e um olhar curioso, sem julgamentos. Seja na psicoterapia ou na avaliação neuropsicológica, busco criar um espaço seguro e empático, onde você possa se expressar livremente e encontrar clareza sobre si mesmo.",
-				"Enquanto a avaliação neuropsicológica tem o objetivo de mapear o funcionamento cognitivo de uma pessoa, ajudando a compreender se suas características estão alinhadas a um diagnóstico, a psicoterapia oferece um espaço para explorar suas emoções, pensamentos e comportamentos, auxiliando na construção de um funcionamento mais saudável no mundo.",
-				"Se você tem dúvidas sobre qual serviço pode ser mais benéfico para você neste momento, disponibilizei um teste rápido e gratuito que pode te ajudar a encontrar um caminho mais claro para sua necessidade.",
+				"Acredito que cada pessoa carrega uma história única, e meu compromisso é acolher essa história com respeito, escuta atenta e um olhar curioso, sem julgamentos. Seja na psicoterapia ou na avaliação neuropsicológica, busco criar um espaço seguro em que você possa expressar-se livremente e encontrar clareza sobre si mesmo.",
+				/* "Enquanto a avaliação neuropsicológica tem o objetivo de mapear o funcionamento cognitivo de uma pessoa, ajudando a compreender se suas características estão alinhadas a um diagnóstico, a psicoterapia oferece um espaço para explorar suas emoções, pensamentos e comportamentos, auxiliando na construção de um funcionamento mais saudável no mundo.", */
+				"Caso você tem dúvidas sobre qual serviço pode ser mais benéfico para você neste momento, disponibilizei um teste rápido e gratuito que pode te ajudar a encontrar um caminho mais claro para sua necessidade.",
 			],
 			subheader: "O que é mais indicado para mim neste momento?",
 			button: ["Faça um teste gratuito!", linkLibrary.internal.testeRapido],
 		},
 		greetings: {
 			header: "Sobre a minha pessoa",
-			subHeader: "Sou psicóloga clínica, neuropsicóloga e pesquisadora",
-			content: [
-				"Desde pequena, sempre fui apaixonada por histórias — sejam elas de ficção, como livros, filmes e séries, ou da vida real, contadas pelos meus familiares sobre tempos passados. Acho que sempre me fascinou o que essas histórias me faziam sentir. Também sempre gostei de registrar momentos através da fotografia e de conhecer diferentes culturas e formas de ver o mundo.",
+			/* 	subHeader: "Sou psicóloga clínica, neuropsicóloga e pesquisadora",*/ content: [
+				"Desde pequena, sempre fui apaixonada por histórias, sejam elas de ficção, como livros, filmes e séries, ou da vida real, contadas pelos meus familiares sobre tempos passados. Acho que sempre me fascinou o que essas histórias me faziam sentir. Também sempre gostei de registrar momentos através da fotografia e de conhecer diferentes culturas e formas de ver o mundo.",
 				"Durante minha infância e adolescência, sonhava em escrever e contar histórias. Hoje, percebo que minha atuação como psicóloga me permite fazer isso de uma maneira muito especial: ajudando pessoas a reconstruírem suas próprias narrativas. Me sinto honrada em acompanhar cada jornada, testemunhar processos de transformação e ver alguém redescobrir o amor por si mesmo.",
-				"Trabalhar com a mente humana significa estar em contato direto com vulnerabilidades profundas — e sei o quão difícil é para alguém se permitir estar nesse lugar. Por isso, encaro como um verdadeiro tesouro cada história que me é confiada.",
+				/* "Trabalhar com a mente humana significa estar em contato direto com vulnerabilidades profundas — e sei o quão difícil é para alguém se permitir estar nesse lugar. Por isso, encaro como um verdadeiro tesouro cada história que me é confiada.", */
 			],
 			button: ["Saiba mais sobre mim!", linkLibrary.internal.sobreMim],
 		},
@@ -311,14 +311,14 @@ const textLibrary = {
 					subheader: "O que é?",
 					text: "Trata-se de um processo avaliativo que tem como objetivo descrever e avaliar o perfil cognitivo, comportamental e emocional de pacientes que estejam apresentando dificuldades em suas atividades de vida diária. Através da avaliação é possível detectar a presença de prejuízos cognitivos e, assim, estabelecer um protocolo de tratamento personalizado, com base nas características de cada paciente.",
 				},
-				{
+				/* {
 					subheader: "Para quem é?",
 					text: "É indicada para crianças, adolescentes, adultos e idosos que apresentam dificuldades cognitivas, comportamentais ou emocionais. O processo não apenas auxilia no diagnóstico de transtornos do neurodesenvolvimento (ex. TDAH, TEAp, TEA) e transtornos neurocognitivos (ex. Alzheimer), como também possibilita uma compreensão detalhada do funcionamento cerebral e suas implicações no dia a dia.",
 				},
 				{
 					subheader: "Por que é importante?",
 					text: "O processo avaliativo orienta intervenções personalizadas, promove estratégias para superar desafios e auxilia no planejamento educacional, profissional ou terapêutico. Além disso, oferece suporte valioso para familiares e profissionais envolvidos, ajudando a criar ambientes e abordagens mais adequados às necessidades do indivíduo.",
-				},
+				},*/
 			],
 			button: [
 				["Mais informações", linkLibrary.internal.avaliacaoNeuropsicologica],
@@ -336,10 +336,10 @@ const textLibrary = {
 					subheader: "Sobre a abordagem teórica: Psicoterapia de Orientação Psicanalítica",
 					text: "Esta é uma das muitas abordagens existentes dentro da psicologia. Utiliza métodos terapêuticos, como a associação livre, em que o paciente fala abertamente sobre seus pensamentos e sentimentos, e a análise da transferência, que examina as emoções e expectativas projetadas no terapeuta.",
 				},
-				{
+				/* {
 					subheader: "Quando a psicoterapia é indicada e como ela pode te auxiliar?",
 					text: "É indicada em momentos de sofrimento emocional, dificuldades nos relacionamentos, crises pessoais ou busca por autoconhecimento. Ela auxilia ao oferecer um espaço seguro para explorar emoções, identificar padrões de comportamento, compreender conflitos internos e desenvolver estratégias para lidar com desafios, promovendo equilíbrio emocional e bem-estar.",
-				},
+				}, */
 			],
 			button: [
 				["Mais informações", linkLibrary.internal.psicoterapia],
@@ -351,11 +351,11 @@ const textLibrary = {
 			content: [
 				{
 					subheader: "Palestras",
-					text: "Ofereço palestras voltadas para escolas, empresas e comunidades, abordando temas relacionados à saúde mental, desenvolvimento cognitivo e emocional, transtornos do neurodesenvolvimento e estratégias de enfrentamento para o dia a dia. Com linguagem acessível e embasamento científico, as palestras são personalizadas para atender às necessidades e interesses específicos de cada público, promovendo conhecimento e sensibilização para questões importantes na vida pessoal e profissional.",
+					text: "Ofereço palestras voltadas para escolas, empresas e comunidades, abordando temas relacionados à saúde mental, desenvolvimento cognitivo e emocional, transtornos do neurodesenvolvimento e estratégias de enfrentamento para o dia a dia. Elas são personalizadas para atender às necessidades e interesses específicos de cada público, promovendo conhecimento e sensibilização para questões importantes na vida pessoal e profissional.",
 				},
 				{
 					subheader: "Aconselhamento para Pais",
-					text: "O aconselhamento para pais é um espaço dedicado a orientá-los sobre os desafios relacionados ao desenvolvimento cognitivo, emocional e comportamental de seus filhos. Com base nas particularidades de cada família, ofereço estratégias práticas e informações embasadas para lidar com dificuldades como ansiedade, manejo de comportamentos desafiadores, e apoio ao aprendizado e à socialização. O objetivo é fortalecer o vínculo familiar e capacitar os pais para promover o bem-estar e o desenvolvimento saudável de seus filhos.",
+					text: "Normalmente indicado após a avaliação psicológica, o aconselhamento para pais é um espaço dedicado a orientá-los sobre os desafios relacionados ao desenvolvimento cognitivo, emocional e comportamental de seus filhos. Com base nas particularidades de cada família, ofereço estratégias práticas e informações embasadas para lidar com dificuldades como ansiedade, manejo de comportamentos desafiadores, e apoio ao aprendizado e à socialização. O objetivo é fortalecer o vínculo familiar e capacitar os pais para promover o bem-estar e o desenvolvimento saudável de seus filhos.",
 				},
 			],
 			button: [["Entre em contato!", linkLibrary.external.whatsapp]],
