@@ -4,9 +4,35 @@ const helper = {
 	isMobileScreen() {
 		return window.matchMedia("(max-width: 1024px").matches;
 	},
+	scrollToHash() {
+		const hash = window.location.hash;
+		if (!hash) return;
+
+		const target = document.querySelector(hash);
+		if (!target) return;
+
+		target.scrollIntoView({
+			behavior: "smooth",
+			block: "start",
+		});
+	},
 };
 
 const build = {
+	mainContainer() {
+		const mainScreen = document.getElementById("mainScreen");
+		const div = document.createElement("main");
+		mainScreen.append(div);
+
+		div.id = "sections";
+		div.classList.add("sections");
+	},
+	span(text, spanClass = undefined) {
+		const span = document.createElement("span");
+		span.textContent = text;
+		if (spanClass) span.classList.add(spanClass);
+		return span;
+	},
 	p(text, pClass = undefined) {
 		const p = document.createElement("p");
 		if (pClass) p.classList.add(pClass);
@@ -26,7 +52,8 @@ const build = {
 
 		function appendBeforeMatch() {
 			if (match.index <= lastIndex) return;
-			p.appendChild(document.createTextNode(text.slice(lastIndex, match.index)));
+			const span = build.span(text.slice(lastIndex, match.index));
+			p.appendChild(span);
 		}
 		function appendStylizedSpan() {
 			const [fullMatch, className, content] = match;
@@ -38,7 +65,8 @@ const build = {
 		function appendAfterMatch() {
 			if (!text) return;
 			if (lastIndex >= text?.length ?? 0) return;
-			p.appendChild(document.createTextNode(text.slice(lastIndex)));
+			const span = build.span(text.slice(lastIndex));
+			p.appendChild(span);
 		}
 	},
 	h2(text) {
@@ -59,12 +87,29 @@ const build = {
 		h4.classList.add("unselectable");
 		return h4;
 	},
-	button(text, link = undefined, newTab = false) {
+	button(text) {
 		const button = document.createElement("button");
 		button.textContent = text;
 		button.classList.add("unselectable");
-		if (link) button.append(build.a(link, newTab));
 		return button;
+	},
+	a(text, link = null, icon = null, newTab = false, iconFirst = false) {
+		const a = document.createElement("a");
+		const content = iconFirst
+			? [icon && build.img(icon), text && build.span(text)]
+			: [text && build.span(text), icon && build.img(icon)];
+
+		content.filter(Boolean).forEach((element) => a.append(element));
+
+		if (link) a.href = link;
+		a.target = newTab ? "_blank" : "_self";
+		a.classList.add("unselectable");
+		return a;
+	},
+	nav(navClass) {
+		const nav = document.createElement("nav");
+		nav.classList.add(navClass);
+		return nav;
 	},
 	buttonScrollTo(text, scrollToDivId) {
 		const errorText = `Incorrect function parameter: scrollToDivId = ${scrollToDivId}`;
@@ -90,12 +135,38 @@ const build = {
 		if (imgClass) img.classList.add(imgClass);
 		return img;
 	},
-	a(link, newTab = false) {
-		const a = document.createElement("a");
-		a.href = link;
-		a.target = newTab ? "_blank" : "_self";
-		a.classList.add("unselectable");
-		return a;
+	closeButton() {
+		const closeButton = document.createElement("button");
+
+		const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+		svg.setAttribute("width", "20");
+		svg.setAttribute("height", "20");
+		svg.setAttribute("viewBox", "0 0 20 20");
+		svg.setAttribute("fill", "none");
+
+		const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+		path.setAttribute("d", "M15 5L5 15M5 5L15 15");
+		path.setAttribute("stroke", "currentColor");
+		path.setAttribute("stroke-width", "2");
+		path.setAttribute("stroke-linecap", "round");
+
+		svg.appendChild(path);
+		closeButton.appendChild(svg);
+		return closeButton;
+	},
+	textList(img, textArray) {
+		const container = document.createElement("ul");
+		container.classList.add("textListContainer");
+
+		for (const text of textArray) {
+			const textContainer = document.createElement("li");
+			textContainer.classList.add("textList");
+			const imgElement = build.img(img);
+			const spanElement = build.span(text);
+			textContainer.append(imgElement, spanElement);
+			container.append(textContainer);
+		}
+		return container;
 	},
 	labelRadio(text, index) {
 		const label = document.createElement("label");
@@ -107,6 +178,22 @@ const build = {
 		label.append(input, textNode);
 		label.classList.add("unselectable");
 		return label;
+	},
+	label(text, labelClass = undefined) {
+		const label = document.createElement("label");
+		label.textContent = text;
+		if (labelClass) label.classList.add(labelClass);
+		return label;
+	},
+	input(inputClass) {
+		const input = document.createElement("input");
+		if (inputClass) input.classList.add(inputClass);
+		return input;
+	},
+	textArea(textAreaClass) {
+		const textArea = document.createElement("textarea");
+		if (textAreaClass) textArea.classList.add(textAreaClass);
+		return textArea;
 	},
 };
 
@@ -134,23 +221,10 @@ const sectionMethods = {
 			sections.append(sectionDiv);
 		}
 	},
-	createContent(contentObject) {
+	createLoopContent(contentObject) {
 		const frag = document.createDocumentFragment();
 		for (const text of contentObject) frag.append(build.p(text));
 		return frag;
-	},
-	createContentIconLink(contentObject) {
-		const frag = document.createDocumentFragment();
-		for (const [text, icon = undefined, link = undefined, newTab = false] of contentObject) {
-			const p = build.p(text);
-			if (icon) p.prepend(build.img(icon, "icon"));
-			if (link) p.append(build.a(link, newTab));
-			frag.append(p);
-		}
-		return frag;
-	},
-	toggleDropdownText(id) {
-		document.getElementById(id).classList.toggle("activeDropdown");
 	},
 	createDropdownText(contentObject, number) {
 		const frag = document.createDocumentFragment();
@@ -170,7 +244,7 @@ const sectionMethods = {
 				container.append(h4);
 
 				h4.addEventListener("click", () => {
-					sectionMethods.toggleDropdownText(id);
+					document.getElementById(id).classList.toggle("activeDropdown");
 					h4.classList.toggle("arrowBottom");
 					h4.classList.toggle("arrowTop");
 				});
@@ -189,7 +263,6 @@ const sectionMethods = {
 const siteHeader = {
 	createAll() {
 		this.create();
-		this.createContainers();
 		this.createLogo();
 		this.createButtons();
 	},
@@ -201,40 +274,27 @@ const siteHeader = {
 		header.id = "header";
 		header.classList.add("header");
 	},
-	createContainers() {
-		const headerDiv = document.getElementById("header");
-		const logoDiv = document.createElement("div");
-		const buttonsDiv = document.createElement("nav");
-		headerDiv.append(logoDiv, buttonsDiv);
-
-		configureLogo();
-		configureButtons();
-
-		function configureLogo() {
-			logoDiv.id = "headerLogo";
-			logoDiv.classList.add("headerLogo");
-		}
-		function configureButtons() {
-			buttonsDiv.id = "headerButtons";
-			buttonsDiv.classList.add("headerButtons");
-		}
-	},
 	createLogo() {
-		const logoDiv = document.getElementById("headerLogo");
+		const header = document.getElementById("header");
+		const a = build.a(null, linkLibrary.home);
 		const img = build.img(imageLibrary.header.logo);
-		const a = build.a(linkLibrary.internal.home);
-		logoDiv.append(img, a);
+		a.classList.add("headerLogo");
+		a.append(img);
+		header.append(a);
 	},
 	createButtons() {
-		const buttonsDiv = document.getElementById("headerButtons");
+		const header = document.getElementById("header");
+		const navClass = "headerNav";
+		const nav = build.nav(navClass);
+
 		const textList = textLibrary.header.buttons;
 		const frag = document.createDocumentFragment();
 		for (const [text, link] of textList) {
-			const isFooter = link === "footer";
-			const button = isFooter ? build.buttonScrollTo(text, link) : build.button(text, link);
-			frag.append(button);
+			const a = build.a(text, link);
+			frag.append(a);
 		}
-		buttonsDiv.append(frag);
+		nav.append(frag);
+		header.append(nav);
 	},
 };
 
@@ -254,27 +314,32 @@ const siteFooter = {
 		footer.id = "footer";
 		footer.classList.add("footer");
 	},
+	createContent(contentObject) {
+		const frag = document.createDocumentFragment();
+		for (const [text, object, link] of contentObject) {
+			const hasLink = link ? true : false;
+			const a = build.a(text, link, object, hasLink, true);
+			if (!hasLink) a.classList.add("normalCursor");
+			frag.append(a);
+		}
+		return frag;
+	},
 	createLeftSide() {
 		const footer = document.getElementById("footer");
 		const container = document.createElement("section");
+		container.classList.add("footerSection");
 		footer.append(container);
 		const textObject = textLibrary.footer.left;
 
-		buildHeader();
-		buildContent();
-
-		function buildHeader() {
-			const h3 = build.h3(textObject.header);
-			container.append(h3);
-		}
-		function buildContent() {
-			const p = sectionMethods.createContentIconLink(textObject.content);
-			container.append(p);
-		}
+		const h3 = build.h3(textObject.header);
+		const content = this.createContent(textObject.content);
+		container.append(h3, content);
 	},
 	createCenterSide() {
 		const footer = document.getElementById("footer");
 		const container = document.createElement("section");
+		container.classList.add("footerSection");
+
 		footer.append(container);
 
 		const textObject = textLibrary.footer;
@@ -289,36 +354,31 @@ const siteFooter = {
 			container.append(h3);
 		}
 		function buildContentTop() {
-			const p = sectionMethods.createContentIconLink(textObject.centerTop.content);
-			container.append(p);
+			const content = siteFooter.createContent(textObject.centerTop.content);
+			container.append(content);
 		}
 		function buildHeaderBottom() {
 			const h3 = build.h3(textObject.centerBottom.header);
 			container.append(h3);
 		}
 		function buildContentBottom() {
-			const p = sectionMethods.createContentIconLink(textObject.centerBottom.content);
-			container.append(p);
+			const content = siteFooter.createContent(textObject.centerBottom.content);
+			container.append(content);
 		}
 	},
 	createRightSide() {
 		const footer = document.getElementById("footer");
 		const container = document.createElement("section");
+		container.classList.add("footerSection");
+
 		footer.append(container);
 
-		const textObject = textLibrary.footer.right;
+		const {header, content} = textLibrary.footer.right;
 
-		buildHeader();
-		buildContent();
+		const h3 = build.h3(header);
+		const as = this.createContent(content);
 
-		function buildHeader() {
-			const h3 = build.h3(textObject.header);
-			container.append(h3);
-		}
-		function buildContent() {
-			const p = sectionMethods.createContentIconLink(textObject.content);
-			container.append(p);
-		}
+		container.append(h3, as);
 	},
 	createCredits() {
 		const footer = document.getElementById("mainScreen");
@@ -398,9 +458,9 @@ const sidebarMenu = {
 
 			const buttonsList = textLibrary.header.buttons;
 			for (const [text, link] of buttonsList) {
-				const isFooter = link === "footer";
-				const button = isFooter ? build.buttonScrollTo(text, link) : build.button(text, link);
-				frag.append(button);
+				const a = build.a(text, link);
+
+				frag.append(a);
 			}
 
 			container.append(frag);
@@ -468,7 +528,7 @@ const eventListeners = {
 			const largeVerticalSwipe = Math.abs(differenceY) > thresholdY;
 			if (largeVerticalSwipe) return;
 
-			event.preventDefault(), {passive: false, capture: true};
+			(event.preventDefault(), {passive: false, capture: true});
 		});
 	},
 	setupBackButtonHandler() {
@@ -515,9 +575,12 @@ const buildPageTitle = {
 
 		const text = textLibrary[page].pageTitle.button;
 		if (!text) return;
-		const link = linkLibrary.external.whatsapp;
-		const button = build.button(text, link, true);
-		container.append(button);
+
+		const link = linkLibrary.whatsapp;
+		const a = build.a(text, link, null, true);
+		a.classList.add("accentA");
+
+		container.append(a);
 	},
 };
 
@@ -588,10 +651,13 @@ const buildInformationCard = {
 
 			const buttonsContainer = document.createElement("div");
 			if (textList.length === 1) buttonsContainer.style.gridTemplateColumns = "unset";
+
 			const frag = document.createDocumentFragment();
 			for (const [text, link] of textList) {
-				const button = build.button(text, link);
-				frag.append(button);
+				const a = build.a(text, link);
+				a.classList.add("accentA");
+
+				frag.append(a);
 			}
 			buttonsContainer.append(frag);
 			container.append(buttonsContainer);
@@ -605,7 +671,6 @@ const buildTimeline = {
 
 		this.createContainer(number);
 		this.createTextContent(page, number, mirrored);
-		this.createImages(number, mirrored);
 	},
 	createContainer(number) {
 		const id = `${number}TimelineSection`;
@@ -615,46 +680,42 @@ const buildTimeline = {
 	createTextContent(page, number, mirrored) {
 		const id = `${number}TimelineSection`;
 		const section = document.getElementById(id);
-		const textObject = textLibrary[page][id];
 
-		buildHeader();
-		buildText();
+		const header = buildHeader();
+		const generalContainer = buildContainer();
+		const list = this.createList(id, page);
+		const image = this.createImages(id, mirrored);
+
+		generalContainer.append(list, image);
+		section.append(...[header, generalContainer].filter(Boolean)); // Filtra header nulo
 
 		function buildHeader() {
+			const textObject = textLibrary[page][id];
 			if (!textObject.header) return;
+
 			const h2 = build.h2(textObject.header);
-			section.append(h2);
+			return h2;
 		}
-		function buildText() {
+		function buildContainer() {
 			const generalContainer = document.createElement("div");
 			generalContainer.id = `${number}GeneralContainer`;
 			generalContainer.classList.add("timelineGeneralContainer");
 			if (mirrored) generalContainer.classList.add("mirrored");
-
-			const leftContainer = document.createElement("div");
-			const frag = sectionMethods.createContent(textObject.content);
-
-			leftContainer.append(frag);
-			generalContainer.append(leftContainer);
-			section.append(generalContainer);
+			return generalContainer;
 		}
 	},
-	createImages(number, mirrored) {
-		const id = `${number}TimelineSection`;
-		const generalContainer = document.getElementById(`${number}GeneralContainer`);
-		const container = document.createElement("div");
-		const containerClass = "imageContainerTimeline";
-		container.classList.add(containerClass);
-		if (mirrored) container.classList.add("rightMirrored");
-
-		const frag = document.createDocumentFragment();
-		for (const source of imageLibrary.sobreMim[id]) {
-			const img = build.img(source);
-			frag.append(img);
-		}
-
-		container.append(frag);
-		generalContainer.append(container);
+	createList(id, page) {
+		const textArray = textLibrary[page][id].content;
+		const bulletPoint = iconLibrary.bulletPoint;
+		const list = build.textList(bulletPoint, textArray);
+		list.classList.add("boxShadow");
+		return list;
+	},
+	createImages(id, mirrored) {
+		const img = build.img(imageLibrary.sobreMim[id]);
+		img.classList.add("imageTimeline", "boxShadow");
+		if (mirrored) img.classList.add("grid_row_one");
+		return img;
 	},
 };
 
@@ -680,44 +741,55 @@ const buildCarousel = {
 	},
 	createStepsContainer(page, id) {
 		const section = document.getElementById("carousel");
-		const container = document.createElement("div");
-		section.append(container);
+		const carouselContainer = document.createElement("div");
 
-		container.classList.add("carouselContainer");
+		const leftButton = this.createButton("left");
+		const stepContainer = this.createStepContainer(page, id);
+		const rightButton = this.createButton("right");
 
-		createButton("left");
-		createStep();
-		createButton("right");
+		carouselContainer.classList.add("carouselContainer");
+		carouselContainer.append(leftButton, stepContainer, rightButton);
+		section.append(carouselContainer);
+		this.addEventListeners();
+	},
+	createButton(side) {
+		const img = document.createElement("img");
+		const {leftCarouselButton, rightCarouselButton} = iconLibrary;
+		const buttonImage = side === "left" ? leftCarouselButton : rightCarouselButton;
+		img.src = buttonImage.src;
+		img.addEventListener("click", () => buildCarousel.toggleNext(side));
+		return img;
+	},
+	createStepContainer(page, id) {
+		const stepContainerID = "carouselCard";
+		const stepContainer = document.createElement("div");
+		stepContainer.id = stepContainerID;
+		stepContainer.classList.add(stepContainerID);
 
-		function createButton(side) {
-			const img = document.createElement("img");
-			const {leftCarouselButton, rightCarouselButton} = iconLibrary;
-			const buttonImage = side === "left" ? leftCarouselButton : rightCarouselButton;
-			img.src = buttonImage.src;
-			img.addEventListener("click", () => buildCarousel.toggleNext(side));
-			container.append(img);
+		const images = imageLibrary[page][id];
+		const textContent = textLibrary[page][id].carousel;
+
+		for (const [index, {header: headerText, content}] of textContent.entries()) {
+			const stepCard = document.createElement("div");
+			const img = build.img(images[index]);
+			const textContainer = document.createElement("div");
+			textContainer.classList.add("carouselTextContainer");
+
+			const header = build.h4(headerText);
+			const p = build.p(content);
+			stepCard.append(img, textContainer);
+			textContainer.append(header, p);
+			stepContainer.append(stepCard);
 		}
-		function createStep() {
-			const cardId = "carouselCard";
-			const innerContainer = document.createElement("div");
-			container.append(innerContainer);
-			innerContainer.id = cardId;
-			innerContainer.classList.add(cardId);
-			eventListeners.horizontalSwipe(
-				cardId,
-				() => buildCarousel.toggleNext("right"),
-				() => buildCarousel.toggleNext("left")
-			);
-
-			const textContent = textLibrary[page][id].carousel;
-			for (const {header: headerText, content} of textContent) {
-				const stepCard = document.createElement("div");
-				const header = build.h4(headerText);
-				const p = build.p(content);
-				stepCard.append(header, p);
-				innerContainer.append(stepCard);
-			}
-		}
+		return stepContainer;
+	},
+	addEventListeners() {
+		const stepContainerID = "carouselCard";
+		eventListeners.horizontalSwipe(
+			stepContainerID,
+			() => buildCarousel.toggleNext("right"),
+			() => buildCarousel.toggleNext("left"),
+		);
 	},
 	createIndicator(page, id) {
 		const section = document.getElementById("carousel");
@@ -813,6 +885,7 @@ const buildQuote = {
 };
 
 const buildSpecialButtons = {
+	colors: ["#d4e2e7", "#c8a8b9", "#c8cdcb", "#cbb8dc"],
 	createAll(page, sectionId) {
 		this.createSectionContainer(sectionId);
 		this.createHeader(page, sectionId);
@@ -850,9 +923,9 @@ const buildSpecialButtons = {
 
 		function buttonProcedure() {
 			for (const [index, [text, callback]] of textList.entries()) {
-				const button = isHome ? build.buttonScrollTo(text, callback) : build.button(text, undefined, false);
+				const button = isHome ? build.buttonScrollTo(text, callback) : build.button(text);
 				button.classList.add("specialButton");
-				button.style.backgroundColor = colorLibrary.buttons[index];
+				button.style.backgroundColor = buildSpecialButtons.colors[index];
 
 				const imageSource = imageLibrary[page][sectionId][index].src;
 				button.addEventListener("mouseover", () => {
@@ -933,8 +1006,8 @@ const fixedScreen = {
 
 		const text = textLibrary[pageId].fixedScreen[ageRange].header;
 		const header = build.h3(text);
-		const closeButton = build.button("");
-		closeButton.classList.add("xShape");
+		const closeButton = build.closeButton();
+
 		if (helper.isMobileScreen()) closeButton.textContent = "Voltar";
 
 		closeButton.addEventListener("click", () => this.close());
@@ -956,16 +1029,19 @@ const fixedScreen = {
 
 		function config() {
 			container.id = "fixedScreenContentContainer";
-			leftDiv.classList.add("fixedScreenLeft", "dottedPattern");
+			container.classList.add("dottedPattern");
+			leftDiv.classList.add("fixedScreenLeft");
 		}
 		function createContent() {
 			const container = document.createElement("div");
-			const textObject = textLibrary[pageId].fixedScreen[ageRange];
-			const subheader = build.h4(textObject.subheader);
+			const {content, subheader} = textLibrary[pageId].fixedScreen[ageRange];
+			const h4 = build.h4(subheader);
 
-			const frag = sectionMethods.createContent(textObject.content);
-			container.append(frag);
-			return [subheader, container];
+			const img = iconLibrary.bulletPoint;
+			const list = build.textList(img, content);
+			list.classList.add("boxShadow");
+
+			return [h4, list];
 		}
 	},
 	createRightDiv(pageId, ageRange) {
@@ -976,6 +1052,7 @@ const fixedScreen = {
 
 		const source = imageLibrary[pageId].fixedScreen[ageRange];
 		const img = build.img(source);
+		img.classList.add("boxShadow");
 		rightDiv.append(img);
 	},
 };

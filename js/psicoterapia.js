@@ -1,7 +1,10 @@
 "use strict";
 
-document.addEventListener("DOMContentLoaded", () => meta.onLoad());
-
+document.addEventListener("DOMContentLoaded", async () => {
+	await loadData();
+	buildTextLibrary();
+	meta.onLoad();
+});
 const meta = {
 	onLoad() {
 		this.createAll();
@@ -12,7 +15,7 @@ const meta = {
 		const thisPage = "psicoterapia";
 
 		siteHeader.createAll();
-		sectionMethods.createMainContainer();
+		build.mainContainer();
 		sidebarMenu.createAll();
 
 		buildPageTitle.createAll(thisPage);

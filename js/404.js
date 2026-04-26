@@ -1,8 +1,10 @@
 "use strict";
 
-"use strict";
-
-document.addEventListener("DOMContentLoaded", () => meta.onLoad());
+document.addEventListener("DOMContentLoaded", async () => {
+	await loadData();
+	buildTextLibrary();
+	meta.onLoad();
+});
 
 const meta = {
 	onLoad() {
@@ -14,7 +16,7 @@ const meta = {
 		const thisPage = "404";
 
 		siteHeader.createAll();
-		sectionMethods.createMainContainer();
+		build.mainContainer();
 		sidebarMenu.createAll();
 
 		buildPageTitle.createAll(thisPage);
@@ -28,7 +30,7 @@ const buildButton = {
 	addButtonToTitle() {
 		const section = document.getElementById("pageTitle");
 		const [text, link] = textLibrary[404].button;
-		const button = build.button(text, link);
-		section.append(button);
+		const a = build.a(text, link);
+		section.append(a);
 	},
 };

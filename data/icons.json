@@ -1,0 +1,16 @@
+{
+	"bulletPoint": {"src": "assets/icons/bullet_point.webp"},
+	"sidebarButton": {"src": "assets/icons/menu.png"},
+	"leftCarouselButton": {"src": "assets/icons/leftCarouselButton.svg"},
+	"rightCarouselButton": {"src": "assets/icons/rightCarouselButton.svg"},
+	"email": {"src": "assets/icons/email.png", "alt": "Ícone de e-mail"},
+	"instagram": {"src": "assets/icons/instagram.png", "alt": "Ícone do Instagram"},
+	"linkedin": {"src": "assets/icons/linkedin.png", "alt": "Ícone do LinkedIn"},
+	"menu": {"src": "assets/icons/menu.png", "alt": "Ícone de menu"},
+	"phone": {"src": "assets/icons/phone.png", "alt": "Ícone de telefone"},
+	"pin": {"src": "assets/icons/pin.png", "alt": "Ícone de pin"},
+	"smallLogo": {"src": "assets/icons/smallLogo.webp", "alt": "Logotipo"},
+	"whatsapp": {"src": "assets/icons/whatsapp.png", "alt": "Ícone do Whatsapp"},
+	"world": {"src": "assets/icons/world.png", "alt": "Ícone do planeta Terra"},
+	"youtube": {"src": "assets/icons/youtube.png", "alt": "Ícone do Youtube"}
+}

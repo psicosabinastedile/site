@@ -1,6 +1,10 @@
 "use strict";
 
-document.addEventListener("DOMContentLoaded", () => meta.onLoad());
+document.addEventListener("DOMContentLoaded", async () => {
+	await loadData();
+	buildTextLibrary();
+	meta.onLoad();
+});
 
 const meta = {
 	onLoad() {
@@ -12,7 +16,7 @@ const meta = {
 		const thisPage = "avaliacaoNeuropsicologica";
 
 		siteHeader.createAll();
-		sectionMethods.createMainContainer();
+		build.mainContainer();
 		sidebarMenu.createAll();
 
 		buildPageTitle.createAll(thisPage);

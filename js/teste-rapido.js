@@ -1,7 +1,10 @@
 "use strict";
 
-document.addEventListener("DOMContentLoaded", () => meta.onLoad());
-
+document.addEventListener("DOMContentLoaded", async () => {
+	await loadData();
+	buildTextLibrary();
+	meta.onLoad();
+});
 const meta = {
 	onLoad() {
 		this.createAll();
@@ -12,7 +15,7 @@ const meta = {
 		const thisPage = "testeRapido";
 
 		siteHeader.createAll();
-		sectionMethods.createMainContainer();
+		build.mainContainer();
 		sidebarMenu.createAll();
 
 		buildPageTitle.createAll(thisPage);
@@ -80,7 +83,7 @@ const buildTest = {
 		container.classList.add(id);
 		section.append(container);
 
-		const text = textLibrary.testeRapido.intro;
+		const {header, description, disclaimer, button: buttonObject} = textLibrary.testeRapido.intro;
 		const h3 = buildHeader();
 		const pDescription = buildDescription();
 		const pDisclaimer = buildDisclaimer();
@@ -88,20 +91,20 @@ const buildTest = {
 		container.append(h3, pDescription, pDisclaimer, button);
 
 		function buildHeader() {
-			const h3 = build.h3(text.header);
+			const h3 = build.h3(header);
 			return h3;
 		}
 		function buildDescription() {
-			const p = build.p(text.description);
+			const p = build.p(description);
 			return p;
 		}
 		function buildDisclaimer() {
 			const pClass = "displayBlock";
-			const p = build.p(text.disclaimer, pClass);
+			const p = build.p(disclaimer, pClass);
 			return p;
 		}
 		function buildButton() {
-			const [buttonText, callback] = text.button;
+			const [buttonText, callback] = buttonObject;
 			const button = build.button(buttonText);
 			button.addEventListener("click", callback);
 			return button;
@@ -213,7 +216,7 @@ const buildTest = {
 		const textObject = textLibrary.testeRapido.result;
 		const header = buildHeader();
 		const text = buildContent();
-		const buttons = buildButtons();
+		const buttons = buildButton();
 
 		container.append(header, text, buttons);
 
@@ -227,10 +230,11 @@ const buildTest = {
 			const p = build.p(resultText, pClass);
 			return p;
 		}
-		function buildButtons() {
-			const [text, link] = textObject.buttons;
-			const button = build.button(text, link, true);
-			return button;
+		function buildButton() {
+			const [text, link] = textObject.button;
+			const a = build.a(text, link, true);
+			a.classList.add(accentA);
+			return a;
 		}
 	},
 	startTest() {

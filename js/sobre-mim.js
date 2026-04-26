@@ -1,7 +1,10 @@
 "use strict";
 
-document.addEventListener("DOMContentLoaded", () => meta.onLoad());
-
+document.addEventListener("DOMContentLoaded", async () => {
+	await loadData();
+	buildTextLibrary();
+	meta.onLoad();
+});
 const meta = {
 	onLoad() {
 		this.createAll();
@@ -12,14 +15,14 @@ const meta = {
 		const thisPage = "sobreMim";
 
 		siteHeader.createAll();
-		sectionMethods.createMainContainer();
+		build.mainContainer();
 		sidebarMenu.createAll();
 
 		greetings.createAll();
 		buildQuote.createAll(thisPage, "first");
 		buildTimeline.createAll(thisPage, "first");
 		buildTimeline.createAll(thisPage, "second", true);
-		today.createAll();
+		buildTimeline.createAll(thisPage, "third");
 
 		siteFooter.createAll();
 	},
@@ -29,6 +32,7 @@ const greetings = {
 	createAll() {
 		this.createContainer();
 		this.createTextContent();
+		this.createButtons();
 	},
 	createContainer() {
 		const container = sectionMethods.createSectionContainer("greetings");
@@ -36,7 +40,6 @@ const greetings = {
 	},
 	createTextContent() {
 		const section = document.getElementById("greetings");
-		const textObject = textLibrary.sobreMim.greetings;
 
 		buildImage();
 		buildHeader();
@@ -52,6 +55,8 @@ const greetings = {
 		}
 		function buildHeader() {
 			const container = document.createElement("div");
+			container.id = "greetingsContainer";
+			const textObject = textLibrary.sobreMim.greetings;
 			const preH2 = build.h4(textObject.preHeader);
 			const h2 = build.h2(textObject.header);
 
@@ -59,53 +64,18 @@ const greetings = {
 			section.append(container);
 		}
 	},
-};
+	createButtons() {
+		const container = document.getElementById("greetingsContainer");
+		const aContainer = document.createElement("nav");
+		const textArray = textLibrary.sobreMim.greetings.buttons;
+		const linkArray = [linkLibrary.lattes, linkLibrary.instagram];
 
-const today = {
-	createAll() {
-		this.createContainer();
-		this.createHeader();
-		this.createContent();
-	},
-	createContainer() {
-		const section = sectionMethods.createSectionContainer("today");
-		section.classList.add("today");
-	},
-	createHeader() {
-		const section = document.getElementById("today");
-		const h2 = build.h2(textLibrary.sobreMim.today.header);
-		section.append(h2);
-	},
-	createContent() {
-		const section = document.getElementById("today");
-		const container = document.createElement("div");
-		section.append(container);
-
-		buildLeftDiv();
-		buildRightDiv();
-
-		function buildLeftDiv() {
-			const leftContainer = document.createElement("div");
-			leftContainer.classList.add("todayLeft");
-			container.append(leftContainer);
-
-			const imageObject = imageLibrary.sobreMim.today;
-
-			const topImageContainer = document.createElement("div");
-			const bottomImagesContainer = document.createElement("div");
-
-			topImageContainer.append(build.img(imageObject[0]));
-			bottomImagesContainer.append(build.img(imageObject[1]), build.img(imageObject[2]));
-			leftContainer.append(topImageContainer, bottomImagesContainer);
+		for (const [index, item] of textArray.entries()) {
+			const a = build.a(item, linkArray[index], null, true);
+			a.classList.add("accentA");
+			aContainer.append(a);
 		}
-		function buildRightDiv() {
-			const rightContainer = document.createElement("div");
-			rightContainer.classList.add("todayRight");
-			container.append(rightContainer);
 
-			const textObject = textLibrary.sobreMim.today.content;
-			const frag = sectionMethods.createContent(textObject);
-			rightContainer.append(frag);
-		}
+		container.append(aContainer);
 	},
 };

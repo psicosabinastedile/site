@@ -1,4 +1,4 @@
-/* Welcome - Home */
+/* #region Welcome - Home */
 .welcome,
 .greetings {
 	display: grid;
@@ -60,8 +60,9 @@
 		padding-inline: unset;
 	}
 }
+/* #endregion */
 
-/* Well-Being - Home  */
+/* #region Well-Being - Home  */
 .wellBeing {
 	display: grid;
 	grid-template-columns: 6fr 4fr;
@@ -121,8 +122,9 @@
 		font-size: 1.5rem;
 	}
 }
+/* #endregion */
 
-/* Greetings - Home  */
+/* #region Greetings - Home  */
 .greetings h2 {
 	margin-bottom: 0px;
 }
@@ -179,8 +181,9 @@
 		margin: 1rem;
 	}
 }
+/* #endregion */
 
-/* Comments - Home  */
+/* #region Comments - Home  */
 .comments {
 	text-align: center;
 }
@@ -217,8 +220,9 @@
 		padding: 1rem;
 	}
 }
+/* #endregion */
 
-/* aboutMeGreetings - Sobre Mim*/
+/* #region aboutMeGreetings - Sobre Mim*/
 .aboutMeGreetings {
 	position: relative;
 	display: grid;
@@ -245,6 +249,15 @@
 	display: grid;
 	justify-items: center;
 }
+.aboutMeGreetings nav {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 2rem;
+}
+.aboutMeGreetings nav > a {
+	width: 100%;
+	justify-content: center;
+}
 @media (max-width: 1024px) {
 	.aboutMeGreetings {
 		grid-template-columns: none;
@@ -269,66 +282,9 @@
 		z-index: 100;
 	}
 }
+/* #endregion */
 
-/* Today - Sobre Mim */
-.today h2 {
-	background-color: var(--background-color-dark);
-	text-align: center;
-}
-.today img {
-	border-radius: var(--border-radius);
-}
-.today > div:last-child {
-	display: grid;
-	grid-template-columns: 4fr 6fr;
-	gap: 1rem;
-	margin-inline: 15rem;
-	margin-block: 2rem;
-}
-.todayLeft {
-	display: grid;
-	gap: 1rem;
-	margin-inline: 2rem;
-}
-.todayLeft > div:last-child {
-	display: grid;
-	gap: 1rem;
-	grid-template-columns: 1fr 1fr;
-}
-.todayRight {
-	display: grid;
-	margin-block: 2rem;
-}
-.todayRight p::before {
-	content: "";
-	margin-right: 2rem;
-	border-radius: 50%;
-	background-color: var(--text-color);
-	width: 0.5rem;
-	height: 0.5rem;
-	aspect-ratio: 1/1;
-}
-@media (max-width: 1024px) {
-	.today > div:last-child {
-		display: grid;
-		grid-template-columns: unset;
-		grid-template-rows: auto;
-		margin: 1rem;
-	}
-	.todayRight {
-		order: -1;
-		display: unset;
-		margin: 0;
-	}
-	.todayLeft {
-		margin: 0;
-	}
-	.todayRight p::before {
-		display: none;
-	}
-}
-
-/* Benefits - Avaliação Neuropsicológica */
+/* #region Benefits - Avaliação Neuropsicológica */
 .benefits {
 	margin-block: 2rem;
 	display: grid;
@@ -369,8 +325,9 @@
 		display: none;
 	}
 }
+/* #endregion */
 
-/* Quick Test - Teste rápido */
+/* #region Quick Test - Teste rápido */
 .quickTest {
 	margin-bottom: 2rem;
 	padding-block: 3rem;
@@ -472,53 +429,32 @@
 		width: 75%;
 	}
 }
+/* #endregion */
 
-/* Timeline */
+/* #region Timeline */
 .timeline h2 {
-	position: absolute;
 	margin: 0;
 	background-color: var(--background-color-dark);
 	padding-left: 10rem;
 	width: 100%;
+	color: var(--background-color-light-alternative);
 }
 .timelineGeneralContainer {
 	display: grid;
-	grid-template-columns: 65fr 35fr;
+	grid-template-columns: 6.5fr 3.5fr;
+	gap: 2rem;
 	align-items: center;
-	padding-inline: 5rem;
+	max-width: 1200px;
+	margin-inline: auto;
 	margin-block: 1rem;
 }
 .timelineGeneralContainer h3 {
 	font-size: 1.5rem;
 }
-.timelineGeneralContainer::after {
-	content: "";
-	position: absolute;
-	bottom: 0;
-	left: 50%;
-	transform: translateX(-50%);
-	width: 15rem;
-	height: 3px;
-	background-color: var(--accent-color);
-}
-.timelineGeneralContainer p::before {
-	content: "";
-	width: 0.5rem;
-	height: 0.5rem;
-	aspect-ratio: 1/1;
-	margin-right: 2rem;
-	border-radius: 50%;
-	background-color: var(--text-color);
-}
-.imageContainerTimeline {
-	display: grid;
-	gap: 1rem;
-	padding-inline: 3rem;
-}
-.imageContainerTimeline img {
-	z-index: 10;
+.imageTimeline {
 	border-radius: var(--border-radius);
 }
+
 @media (max-width: 1024px) {
 	.timeline h2 {
 		padding-left: unset;
@@ -540,14 +476,18 @@
 	.timelineGeneralContainer::after {
 		display: none;
 	}
+	.imageTimeline {
+		margin-bottom: 1rem;
+	}
 }
 @media (max-width: 1550px) {
 	.timeline h2 {
 		position: relative;
 	}
 }
+/* #endregion */
 
-/* Quote */
+/* #region Quote */
 .quoteContainer {
 	margin-block: 2rem;
 	display: grid;
@@ -573,8 +513,9 @@
 		font-size: 0.8rem;
 	}
 }
+/* #endregion */
 
-/* Page Title */
+/* #region Page Title */
 .pageTitle {
 	background-color: var(--background-color-dark);
 	display: grid;
@@ -602,8 +543,9 @@
 		margin: 0;
 	}
 }
+/* #endregion */
 
-/* Information Card */
+/* #region Information Card */
 .informationCard {
 	display: grid;
 	grid-template-columns: 35fr 65fr;
@@ -662,7 +604,6 @@
 	.contentInformationCard {
 		margin: 0rem;
 		padding: 1rem;
-		min-height: 30rem;
 	}
 	.contentInformationCard > div:last-child {
 		grid-template-columns: unset;
@@ -672,8 +613,9 @@
 		order: 0;
 	}
 }
+/* #endregion */
 
-/* Carousel */
+/* #region Carousel */
 .carousel {
 	background-color: var(--background-color-dark);
 	display: grid;
@@ -687,15 +629,15 @@
 	border-bottom: 2px solid var(--signature-color);
 }
 .carouselContainer {
+	max-width: 1200px;
+	margin-inline: auto;
 	padding-top: 2rem;
-	padding-inline: 10rem;
 	display: grid;
 	align-items: center;
 	grid-template-columns: 1fr 8fr 1fr;
 	gap: 3vw;
 }
 .carouselCard {
-	padding: 2rem;
 	border: 10px double var(--background-color-dark);
 	background-color: var(--background-color-light-alternative);
 	position: relative;
@@ -706,18 +648,29 @@
 	grid-auto-flow: column;
 	gap: 25%;
 }
-.carouselCard div {
+.carouselCard > div {
+	padding: clamp(1rem, 1rem, 2rem);
+	display: grid;
+	gap: 1rem;
+	grid-template-columns: 1fr 1fr;
 	transition: transform 0.5s ease;
 }
-.carouselContainer img {
+.carouselContainer > img {
 	cursor: pointer;
 	transition: 0.2s ease-in-out;
 }
-.carouselContainer img:hover {
+.carouselContainer > img:hover {
 	filter: opacity(75%);
 }
-.carouselContainer img:active {
+.carouselContainer > img:active {
 	filter: opacity(50%);
+}
+.carouselTextContainer {
+	display: grid;
+}
+.carouselTextContainer p {
+	display: unset;
+	font-size: 1.3rem;
 }
 .indicator {
 	display: grid;
@@ -746,12 +699,27 @@
 	.carousel h4 {
 		font-size: 1.4rem;
 	}
+	.carouselCard > div {
+		padding: clamp(1rem, 1rem, 2rem);
+		display: grid;
+		gap: 1rem;
+		grid-template-columns: unset;
+		grid-template-rows: 1fr 1fr;
+		transition: transform 0.5s ease;
+	}
+	.carouselCard > div > div {
+		grid-row: 1;
+	}
+	.carouselCard > div > img {
+		width: 75%;
+		margin-inline: auto;
+	}
 	.carouselContainer {
 		margin: 1rem;
 		padding: 0;
 		grid-template-columns: unset;
 	}
-	.carouselContainer img {
+	.carouselContainer > img {
 		display: none;
 	}
 	.carouselCard {
@@ -761,9 +729,13 @@
 		margin-top: 1rem;
 		width: 50%;
 	}
+	.carouselTextContainer p {
+		font-size: 1rem;
+	}
 }
+/* #endregion */
 
-/* Special Buttons */
+/* #region Special Buttons */
 .specialButtonsSection {
 	display: grid;
 	padding-block: 2rem;
@@ -780,10 +752,12 @@
 	border-bottom: 2px solid var(--signature-color);
 }
 .specialButtonsContainer {
-	margin-block: 2rem;
-	margin-inline: 5rem;
 	display: flex;
+	gap: 1rem;
 	justify-content: space-evenly;
+	margin-block: 2rem;
+	max-width: 1200px;
+	margin-inline: auto;
 }
 .specialButtonsContainer button {
 	--size: 15rem;
@@ -814,6 +788,8 @@
 	transition: opacity 0.3s ease-in-out;
 	border-radius: var(--border-radius);
 	pointer-events: none;
+	left: 0;
+	top: 0;
 }
 .specialButton:hover::after {
 	opacity: 0.3;
@@ -830,8 +806,9 @@
 		align-items: center;
 	}
 }
+/* #endregion */
 
-/* faq */
+/* #region faq */
 .faq {
 	display: grid;
 	margin-bottom: 3rem;
@@ -875,8 +852,9 @@
 		border-block: 1px solid var(--background-color-light);
 	}
 }
+/* #endregion */
 
-/* Dropdown */
+/* #region Dropdown */
 .dropdownHeader {
 	background-color: var(--accent-color);
 	min-height: 4rem;
@@ -943,16 +921,22 @@
 		padding: 1rem;
 	}
 }
+/* #endregion */
 
-/* Specific Styles */
+/* #region Specific Styles */
+.boxShadow {
+	box-shadow: 0.05rem 0.05rem 1rem var(--shadow);
+}
 .bold {
 	font-weight: bold;
 }
 .dottedPattern {
-	background-image: radial-gradient(circle, #cdc6c3 1px, transparent 1px),
-		radial-gradient(circle, #cdc6c3 1px, transparent 1px);
+	background-image:
+		radial-gradient(circle, #cdc6c3 1px, transparent 1px), radial-gradient(circle, #cdc6c3 1px, transparent 1px);
 	background-size: 20px 20px;
-	background-position: 0 0, 10px 10px;
+	background-position:
+		0 0,
+		10px 10px;
 }
 .gradientBorder {
 	padding: 0.2rem;
@@ -982,7 +966,8 @@
 	background: transparent;
 }
 .polkaDotsPattern {
-	background: radial-gradient(circle, var(--accent-color) 20%, transparent 20%) 0 0,
+	background:
+		radial-gradient(circle, var(--accent-color) 20%, transparent 20%) 0 0,
 		radial-gradient(circle, var(--accent-color-active) 20%, transparent 20%) 10px 10px;
 	background-size: 20px 20px;
 }
@@ -1005,25 +990,8 @@
 .rightMirrored {
 	order: -1;
 }
-.xShape {
-	position: relative;
-	width: 100%;
-	height: 100%;
-}
-.xShape::before,
-.xShape::after {
-	display: block;
-	content: "";
-	position: absolute;
-	width: 3px;
-	left: 50%;
-	top: 10%;
-	height: 80%;
-	background-color: var(--header-color);
-	rotate: 45deg;
-}
-.xShape::after {
-	rotate: -45deg;
+.grid_row_one {
+	grid-row: 1;
 }
 @media (max-width: 1024px) {
 	.scrollableX {
@@ -1036,17 +1004,11 @@
 	.gradientBorder {
 		background-image: linear-gradient(to bottom, var(--background-color-light) 50%, var(--primary-color) 50%);
 	}
-	.xShape {
-		font-size: 1.2rem;
-		order: -1;
-		width: 100%;
-		height: 3rem;
-	}
-	.xShape::before,
-	.xShape::after {
-		display: none;
-	}
 	.rightMirrored {
 		order: unset;
 	}
+	.grid_row_one {
+		grid-row: unset;
+	}
 }
+/* #endregion */

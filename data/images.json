@@ -1,0 +1,180 @@
+{
+	"header": {
+		"logo": {"src": "assets/icons/logo.webp", "alt": "Logo Sabina M. Stedile, psicóloga clínica, CRP: 07/40927."}
+	},
+	"home": {
+		"welcome": {
+			"src": "assets/images/internal/home_2023_welcome.webp",
+			"alt": "Psicóloga Sabina Stedile sorrindo, com olhar tranquilo."
+		},
+		"greetings": {
+			"src": "assets/images/internal/home_2023_salãoDeBeleza.webp",
+			"alt": "Psicóloga Sabina Stedile sorrindo de lado."
+		},
+		"services": [
+			{
+				"src": "../assets/images/external/home_avaliacaoNeuropsicologica.jpg",
+				"alt": "Mulher segurando caneta e prancheta."
+			},
+			{
+				"src": "../assets/images/external/home_psicoterapia.jpg",
+				"alt": "Mulher angustiada em sessão de psicoterapia."
+			},
+			{
+				"src": "../assets/images/external/home_palestra.webp",
+				"alt": "Múltiplas pessoas sentadas em cadeiras assistindo a uma palestra."
+			},
+			{
+				"src": "../assets/images/external/home_aconselhamentoDePais.jpg",
+				"alt": "Uma criança com expressão emburrada sentada no chão com um brinquedo na mão."
+			}
+		]
+	},
+	"sobreMim": {
+		"greetings": {"src": "assets/images/internal/sobreMim_header.webp", "alt": "Sabina sorrindo para a câmera."},
+		"firstTimelineSection": {
+			"src": "assets/images/internal/sobre_mim_1.webp",
+			"alt": "Sabina apresentando um trabalho sobre envelhecimento bem-sucedido."
+		},
+		"secondTimelineSection": {
+			"src": "assets/images/internal/sobre_mim_2.webp",
+			"alt": "Mosaico de fotos da Sabina."
+		},
+		"thirdTimelineSection": {
+			"src": "assets/images/internal/sobre_mim_3.webp",
+			"alt": "Mosaico de fotos da Sabina."
+		}
+	},
+	"avaliacaoNeuropsicologica": {
+		"ageRange": [
+			{
+				"src": "../assets/images/external/avaliacaoNeuropsicologica_preEscolar.jpg",
+				"alt": "Criança no chão, de bruços brincando com cubos de montar."
+			},
+			{
+				"src": "../assets/images/external/avaliacaoNeuropsicologica_escolar.jpg",
+				"alt": "Criança desenhando em uma oficina de desenhos."
+			},
+			{
+				"src": "../assets/images/external/avaliacaoNeuropsicologica_adultez.jpg",
+				"alt": "Jovem lendo um livro sentada em uma cadeira, em frente a uma escrivaninha."
+			},
+			{
+				"src": "../assets/images/external/avaliacaoNeuropsicologica_envelhecimento.webp",
+				"alt": "Dois idosos felizes, sorrindo para a câmera."
+			}
+		],
+		"fixedScreen": {
+			"preEscolar": {
+				"src": "assets/images/external/avaliacaoNeuropsicologica_preEscolar_popup.jpg",
+				"alt": "Criança escondendo-se parcialmente atrás de um sofá."
+			},
+			"escolar": {
+				"src": "assets/images/external/avaliacaoNeuropsicologica_escolar_popup.jpg",
+				"alt": "Duas crianças com livros na cabeça sentadas em um muro, sorrindo uma para a outra."
+			},
+			"adultez": {
+				"src": "assets/images/external/avaliacaoNeuropsicologica_adultez_popup.jpg",
+				"alt": "Adolescente lendo um livro, olhando para a câmera."
+			},
+			"envelhecimento": {
+				"src": "assets/images/external/avaliacaoNeuropsicologica_envelhecimento_popup.jpg",
+				"alt": "Idosos abraçados em uma sacada de um prédio, olhando pela janela."
+			}
+		},
+		"firstFaq": [
+			{
+				"src": "assets/images/external/avaliacaoNeuropsicologica_teenager.webp",
+				"alt": "Adolescente angustiada em sessão de psicoterapia, visão da psicóloga."
+			},
+			{
+				"src": "assets/images/external/avaliacaoNeuropsicologica_happyChild.webp",
+				"alt": "Criança brincando com blocos de montar sendo avaliada pela neuropsicóloga."
+			}
+		],
+		"step": [
+			{
+				"src": "assets/images/internal/avaliacao_carrossel_1.jpeg",
+				"alt": "Sabina atenta durante avaliação."
+			},
+			{
+				"src": "assets/images/internal/avaliacao_carrossel_2.jpeg",
+				"alt": "Instrumentos de avaliação neuropsicológica."
+			},
+			{
+				"src": "assets/images/internal/avaliacao_carrossel_3.jpeg",
+				"alt": "Sabina estudando o caso."
+			},
+			{
+				"src": "assets/images/internal/avaliacao_carrossel_4.jpeg",
+				"alt": "Sabina preparando o laudo."
+			},
+			{
+				"src": "assets/images/internal/avaliacao_carrossel_5.jpeg",
+				"alt": "Sabina explicando o resultado da avaliação neuropsicológica."
+			}
+		],
+		"secondFaq": [
+			{
+				"src": "assets/images/external/avaliacaoNeuropsicologica_benefits.webp",
+				"alt": "Adolescente angustiada em sessão de psicoterapia, visão da psicóloga."
+			}
+		]
+	},
+	"psicoterapia": {
+		"ageRange": [
+			{
+				"src": "../assets/images/external/psicoterapia_infancia.jpg",
+				"alt": "Criança feliz correndo sobre a grama em direção à câmera."
+			},
+			{
+				"src": "../assets/images/external/psicoterapia_adolescencia.jpg",
+				"alt": "Adolescente atentiva mexendo no celular."
+			},
+			{
+				"src": "../assets/images/external/psicoterapia_jovemAdultez.jpg",
+				"alt": "Jovem em cima do muro observando a paisagem."
+			},
+			{
+				"src": "../assets/images/external/psicoterapia_adultezMadura.jpg",
+				"alt": "Senhora sorrindo para a câmera."
+			},
+			{
+				"src": "../assets/images/external/psicoterapia_adultezTardia.jpg",
+				"alt": "Senhora sorrindo de lado."
+			}
+		],
+		"fixedScreen": {
+			"infancia": {
+				"src": "assets/images/external/psicoterapia_infancia_popup.jpg",
+				"alt": "Três crianças sorrindo felizes."
+			},
+			"adolescencia": {
+				"src": "assets/images/external/psicoterapia_adolescencia_popup.jpg",
+				"alt": "Adolescente feliz de boné escutando música."
+			},
+			"jovemAdultez": {
+				"src": "assets/images/external/psicoterapia_jovemAdultez_popup.jpg",
+				"alt": "Jovem sorridente com beca de formatura."
+			},
+			"adultezMadura": {
+				"src": "assets/images/external/psicoterapia_adultezMadura_popup.jpg",
+				"alt": "Casal de adultos fazendo piquenique no parque."
+			},
+			"adultezTardia": {
+				"src": "assets/images/external/psicoterapia_adultezTardia_popup.jpg",
+				"alt": "Idosa com expressão ponderativa."
+			}
+		},
+		"firstFaq": [
+			{
+				"src": "assets/images/external/psicoterapia_sofrimento.jpg",
+				"alt": "Mulher em sofrimento com as mãos sobre o rosto."
+			},
+			{
+				"src": "assets/images/external/psicoterapia_consultaJovem.webp",
+				"alt": "Adolescente sentada em uma poltrona com expressão preocupada durante uma sessão de psicoterapia."
+			}
+		]
+	}
+}
