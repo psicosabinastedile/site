@@ -26,7 +26,6 @@ const meta = {
 		buildInformationCard.createAll(thisPage, "avaliacaoNeuropsicologica", "left");
 		buildInformationCard.createAll(thisPage, "psicoterapia", "right");
 		buildInformationCard.createAll(thisPage, "outrosServicos", "left");
-		//buildCarousel.createAll(thisPage, "comments");
 
 		siteFooter.createAll();
 	},
@@ -203,39 +202,5 @@ const greetings = {
 			buttonContainer.append(a);
 			rightSide.append(buttonContainer);
 		}
-	},
-};
-
-const comments = {
-	createAll() {
-		this.createSectionContainer();
-		this.createHeader();
-		this.createCards();
-	},
-	createSectionContainer() {
-		const div = sectionMethods.createSectionContainer("comments");
-		div.classList.add("comments");
-	},
-	createHeader() {
-		const sectionDiv = document.getElementById("comments");
-		const h3 = build.h3(textLibrary.home.comments.header);
-		sectionDiv.append(h3);
-	},
-	createCards() {
-		const sectionDiv = document.getElementById("comments");
-		const container = document.createElement("div");
-		container.classList.add("commentsContainer", "scrollableX");
-		sectionDiv.append(container);
-
-		const cardList = textLibrary.home.comments.cards;
-		const frag = document.createDocumentFragment();
-		for (const {name, content} of cardList) {
-			const cardContainer = document.createElement("div");
-			const header = build.h4(name);
-			const p = build.p(content);
-			cardContainer.append(header, p);
-			frag.append(cardContainer);
-		}
-		container.append(frag);
 	},
 };

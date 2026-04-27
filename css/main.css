@@ -127,7 +127,7 @@ img {
 	flex-shrink: 0;
 }
 .textList span {
-	font-size: 1.2rem;
+	font-size: 0.9rem;
 	margin: 0;
 	padding-left: 2rem;
 }
@@ -444,7 +444,7 @@ img {
 		padding: 0.5rem;
 	}
 	.header a > img {
-		max-width: 300px;
+		max-width: 200px;
 	}
 	.header a:hover {
 		background-color: unset;
@@ -472,7 +472,7 @@ img {
 
 /* #region Footer */
 .footer {
-	padding: 0 5rem 2rem 10rem;
+	padding: 0 5rem 1rem 10rem;
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	background-color: var(--signature-color);
@@ -497,11 +497,9 @@ img {
 	aspect-ratio: 1/1;
 }
 .footer h3 {
-	margin-block: 2rem;
-
+	margin-block: 1rem;
 	font-family: var(--subheader-font);
 	font-size: 1.6rem;
-	margin-bottom: 1rem;
 }
 .footer div:not(:last-child) {
 	border-right: 2px solid var(--text-color);
@@ -524,6 +522,13 @@ img {
 		grid-template-rows: auto;
 		padding: 1rem;
 	}
+	.footer span {
+		font-size: 1rem;
+	}
+	.footer a > img {
+		max-width: 24px;
+		max-height: 24px;
+	}
 	.footer h3 {
 		margin-block: 1rem;
 		font-size: 1.3rem;
@@ -535,6 +540,9 @@ img {
 	.footer p {
 		font-size: 1rem;
 		margin-block: 0.5rem;
+	}
+	.footerSection {
+		gap: 0.5rem;
 	}
 }
 /* #endregion */

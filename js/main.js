@@ -516,20 +516,23 @@ const eventListeners = {
 			const differenceX = endX - start.x;
 			const thresholdX = 100;
 
-			const swipeLeft = differenceX > thresholdX;
-			if (swipeLeft) return rightToLeft();
-			if (leftToRight) leftToRight();
+			if (differenceX > thresholdX) return rightToLeft();
+			if (differenceX < thresholdX * -1) return leftToRight();
 		});
-		node.addEventListener("touchmove", (event) => {
-			const endY = event.changedTouches[0].clientY;
-			const differenceY = endY - start.y;
-			const thresholdY = 10;
+		node.addEventListener(
+			"touchmove",
+			(event) => {
+				const endY = event.changedTouches[0].clientY;
+				const differenceY = endY - start.y;
+				const thresholdY = 10;
 
-			const largeVerticalSwipe = Math.abs(differenceY) > thresholdY;
-			if (largeVerticalSwipe) return;
+				const largeVerticalSwipe = Math.abs(differenceY) > thresholdY;
+				if (largeVerticalSwipe) return;
 
-			(event.preventDefault(), {passive: false, capture: true});
-		});
+				event.preventDefault();
+			},
+			{passive: false},
+		);
 	},
 	setupBackButtonHandler() {
 		if (!helper.isMobileScreen()) return;
@@ -906,8 +909,7 @@ const buildSpecialButtons = {
 		const sectionDiv = document.getElementById(sectionId);
 		const container = document.createElement("div");
 		container.id = `${sectionId}ButtonsContainer`;
-		container.classList.add(`specialButtonsContainer`, "scrollableX");
-		if (page === "psicoterapia") container.style.gridTemplateColumns = "repeat(5, 15rem)";
+		container.classList.add("specialButtonsContainer", "scrollableX");
 
 		sectionDiv.append(container);
 	},
