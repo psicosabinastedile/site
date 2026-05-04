@@ -35,7 +35,7 @@ const greetings = {
 		this.createButtons();
 	},
 	createContainer() {
-		const container = sectionMethods.createSectionContainer("greetings");
+		const container = build.sectionContainer("greetings");
 		container.classList.add("aboutMeGreetings");
 	},
 	createTextContent() {

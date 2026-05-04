@@ -27,6 +27,21 @@ const build = {
 		div.id = "sections";
 		div.classList.add("sections");
 	},
+	sectionContainer(id) {
+		if (!id) throw new Error("Please define an id.");
+
+		const sectionDiv = document.createElement("section");
+		sectionDiv.id = id;
+		sectionDiv.classList.add("generalSectionLayout");
+		append();
+
+		return sectionDiv;
+
+		function append() {
+			const sections = document.getElementById("sections");
+			sections.append(sectionDiv);
+		}
+	},
 	span(text, spanClass = undefined) {
 		const span = document.createElement("span");
 		span.textContent = text;
@@ -195,38 +210,7 @@ const build = {
 		if (textAreaClass) textArea.classList.add(textAreaClass);
 		return textArea;
 	},
-};
-
-const sectionMethods = {
-	createMainContainer() {
-		const mainScreen = document.getElementById("mainScreen");
-		const div = document.createElement("main");
-		mainScreen.append(div);
-
-		div.id = "sections";
-		div.classList.add("sections");
-	},
-	createSectionContainer(id) {
-		if (!id) throw new Error("Please define an id.");
-
-		const sectionDiv = document.createElement("section");
-		sectionDiv.id = id;
-		sectionDiv.classList.add("generalSectionLayout");
-		append();
-
-		return sectionDiv;
-
-		function append() {
-			const sections = document.getElementById("sections");
-			sections.append(sectionDiv);
-		}
-	},
-	createLoopContent(contentObject) {
-		const frag = document.createDocumentFragment();
-		for (const text of contentObject) frag.append(build.p(text));
-		return frag;
-	},
-	createDropdownText(contentObject, number) {
+	dropdown(contentObject, number) {
 		const frag = document.createDocumentFragment();
 
 		for (const [index, {header, content}] of Object.entries(contentObject)) {
@@ -418,10 +402,14 @@ const sidebarMenu = {
 		document.documentElement.style.removeProperty("overflow-y");
 	},
 	createAll() {
+		this.addClass();
 		this.createSidebarButton();
 		this.createSidebarHeader();
 		this.createSidebarBody();
-		this.swipeToOpen();
+		//this.swipeToOpen();
+	},
+	addClass() {
+		document.getElementById("sidebar").classList.add("boxShadow");
 	},
 	createSidebarButton() {
 		const width = window.getComputedStyle(document.getElementById("body")).width;
@@ -467,7 +455,11 @@ const sidebarMenu = {
 		}
 	},
 	swipeToOpen() {
-		eventListeners.horizontalSwipe("body", undefined, () => this.close());
+		eventListeners.horizontalSwipe(
+			"body",
+			() => this.open(),
+			() => this.close(),
+		);
 	},
 };
 
@@ -503,15 +495,17 @@ const eventListeners = {
 			fixedScreen.close();
 		});
 	},
-	horizontalSwipe(nodeId, leftToRight, rightToLeft) {
+	horizontalSwipe(nodeId, leftToRight, rightToLeft, stopPropagation = false) {
 		const node = document.getElementById(nodeId);
 		let start = {};
 
 		node.addEventListener("touchstart", (event) => {
+			if (stopPropagation) event.stopPropagation();
 			start.x = event.touches[0].clientX;
 			start.y = event.touches[0].clientY;
 		});
 		node.addEventListener("touchend", (event) => {
+			if (stopPropagation) event.stopPropagation();
 			const endX = event.changedTouches[0].clientX;
 			const differenceX = endX - start.x;
 			const thresholdX = 100;
@@ -553,7 +547,7 @@ const buildPageTitle = {
 	createContainer() {
 		const id = "pageTitle";
 		const containerClass = "pageTitle";
-		const container = sectionMethods.createSectionContainer(id);
+		const container = build.sectionContainer(id);
 		container.classList.add(containerClass);
 	},
 	createHeaderContent(page) {
@@ -599,7 +593,7 @@ const buildInformationCard = {
 		this.createContent(page, id, headerSide);
 	},
 	createSectionContainer(id, side) {
-		const div = sectionMethods.createSectionContainer(id);
+		const div = build.sectionContainer(id);
 		div.classList.add("informationCard", `${side}HeaderInformationCard`);
 	},
 	createTitleContainer(id, side) {
@@ -630,16 +624,13 @@ const buildInformationCard = {
 		side = side === "left" ? "right" : "left";
 
 		const container = document.getElementById(`${id}_${side}`);
-
-		buildText();
-		buildButtons();
+		const {content, button} = textLibrary[page][id];
+		if (content) buildText();
+		if (button) buildButtons();
 
 		function buildText() {
-			const textList = textLibrary[page][id].content;
-			if (!textList) return;
-
 			const frag = document.createDocumentFragment();
-			for (const {subheader, text} of textList) {
+			for (const {subheader, text} of content) {
 				const block = document.createElement("div");
 				const h4 = build.h4(subheader);
 				const p = build.p(text);
@@ -649,14 +640,11 @@ const buildInformationCard = {
 			container.append(frag);
 		}
 		function buildButtons() {
-			const textList = textLibrary[page][id].button;
-			if (!textList) return;
-
 			const buttonsContainer = document.createElement("div");
-			if (textList.length === 1) buttonsContainer.style.gridTemplateColumns = "unset";
+			if (button.length === 1) buttonsContainer.style.gridTemplateColumns = "unset";
 
 			const frag = document.createDocumentFragment();
-			for (const [text, link] of textList) {
+			for (const [text, link] of button) {
 				const a = build.a(text, link);
 				a.classList.add("accentA");
 
@@ -677,7 +665,7 @@ const buildTimeline = {
 	},
 	createContainer(number) {
 		const id = `${number}TimelineSection`;
-		const container = sectionMethods.createSectionContainer(id);
+		const container = build.sectionContainer(id);
 		container.classList.add("timeline");
 	},
 	createTextContent(page, number, mirrored) {
@@ -733,7 +721,7 @@ const buildCarousel = {
 		this.createIndicator(page, id);
 	},
 	createContainer() {
-		const container = sectionMethods.createSectionContainer("carousel");
+		const container = build.sectionContainer("carousel");
 		container.classList.add("carousel");
 	},
 	createHeader(page, id) {
@@ -788,10 +776,12 @@ const buildCarousel = {
 	},
 	addEventListeners() {
 		const stepContainerID = "carouselCard";
+		const stopPropagation = true;
 		eventListeners.horizontalSwipe(
 			stepContainerID,
 			() => buildCarousel.toggleNext("right"),
 			() => buildCarousel.toggleNext("left"),
+			stopPropagation,
 		);
 	},
 	createIndicator(page, id) {
@@ -872,7 +862,7 @@ const buildQuote = {
 	createContainer(number, alternate) {
 		const id = `${number}QuoteSection`;
 		const containerClass = alternate ? "alternateQuoteContainer" : "quoteContainer";
-		const container = sectionMethods.createSectionContainer(id);
+		const container = build.sectionContainer(id);
 		container.classList.add(containerClass);
 	},
 	createTextContent(page, number) {
@@ -888,7 +878,7 @@ const buildQuote = {
 };
 
 const buildSpecialButtons = {
-	colors: ["#d4e2e7", "#c8a8b9", "#c8cdcb", "#cbb8dc"],
+	colors: ["#d4e2e7", "#c8a8b9", "#c8cdcb", "#cbb8dc", "#d6c3c9", "#c2bcbf "],
 	createAll(page, sectionId) {
 		this.createSectionContainer(sectionId);
 		this.createHeader(page, sectionId);
@@ -896,7 +886,7 @@ const buildSpecialButtons = {
 		this.createButtons(page, sectionId);
 	},
 	createSectionContainer(sectionId) {
-		const div = sectionMethods.createSectionContainer(sectionId);
+		const div = build.sectionContainer(sectionId);
 		div.classList.add("specialButtonsSection");
 	},
 	createHeader(page, sectionId) {
@@ -929,7 +919,7 @@ const buildSpecialButtons = {
 				button.classList.add("specialButton");
 				button.style.backgroundColor = buildSpecialButtons.colors[index];
 
-				const imageSource = imageLibrary[page][sectionId][index].src;
+				const imageSource = imageLibrary[page][sectionId][index]?.src;
 				button.addEventListener("mouseover", () => {
 					button.style.setProperty("--button-background-image", `url(${imageSource})`);
 				});
@@ -1067,7 +1057,7 @@ const buildFaq = {
 		this.createImageDiv(page, mirrored, number);
 	},
 	createContainer(number) {
-		const container = sectionMethods.createSectionContainer(`${number}Faq`);
+		const container = build.sectionContainer(`${number}Faq`);
 		container.classList.add("faq");
 	},
 	createHeader(page, mirrored, number) {
@@ -1088,7 +1078,7 @@ const buildFaq = {
 
 		const textObject = textLibrary[page][`${number}Faq`];
 		const contentObject = textObject.dropdown;
-		const dropdownDiv = sectionMethods.createDropdownText(contentObject, number);
+		const dropdownDiv = build.dropdown(contentObject, number);
 
 		container.append(dropdownDiv);
 		section.append(container);

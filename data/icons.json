@@ -1,5 +1,6 @@
 {
 	"bulletPoint": {"src": "assets/icons/bullet_point.webp"},
+	"erro": {"src": "assets/icons/erro.png"},
 	"sidebarButton": {"src": "assets/icons/menu.png"},
 	"leftCarouselButton": {"src": "assets/icons/leftCarouselButton.svg"},
 	"rightCarouselButton": {"src": "assets/icons/rightCarouselButton.svg"},

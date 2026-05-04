@@ -88,10 +88,11 @@ label {
 	position: relative;
 	display: flex;
 	align-items: center;
-	font-size: clamp(1rem, 1.4rem, 1.4rem);
+	font-size: clamp(1rem, 1.2rem, 1.3rem);
 }
 label {
 	cursor: pointer;
+	font-size: clamp(1rem, 1.1rem, 1.1rem);
 }
 a {
 	cursor: pointer;
@@ -127,7 +128,7 @@ img {
 	flex-shrink: 0;
 }
 .textList span {
-	font-size: 0.9rem;
+	font-size: 1.2rem;
 	margin: 0;
 	padding-left: 2rem;
 }
@@ -147,10 +148,10 @@ img {
 		font-size: 1rem;
 	}
 	h2 {
-		font-size: 2rem;
+		font-size: 1.8rem;
 	}
 	h3 {
-		font-size: 1.6rem;
+		font-size: 1.4rem;
 	}
 	h4 {
 		font-size: 1.2rem;
@@ -161,8 +162,18 @@ img {
 	img {
 		border-radius: var(--border-radius);
 	}
+	a,
+	span {
+		font-size: 1rem;
+	}
+	a {
+		margin-block: 0.5rem;
+	}
 	.textListContainer {
 		margin-block: 1rem;
+	}
+	.textList span {
+		font-size: 0.9rem;
 	}
 }
 /* #endregion */
@@ -186,9 +197,12 @@ img {
 }
 .generalSectionLayout a,
 .generalSectionLayout button {
+	display: grid;
+	justify-content: center;
+	align-items: center;
 	width: fit-content;
-	margin-block: 1rem;
-	padding-inline: 2rem;
+	margin-block: 0.5rem;
+	padding-inline: 1rem;
 	height: 3rem;
 	justify-content: left;
 	align-items: center;
@@ -256,7 +270,7 @@ img {
 		position: relative;
 		aspect-ratio: 1/1;
 		background-color: unset;
-		height: 5rem;
+		height: 4rem;
 		font-size: 1rem;
 	}
 	.sidebarButton {
@@ -400,9 +414,9 @@ img {
 .header {
 	height: var(--page-header-height);
 	width: 100%;
-	height: 100%;
+	height: 10vh;
 	display: grid;
-	grid-template-columns: 3fr 7fr;
+	grid-template-columns: 25fr 75fr;
 	align-content: center;
 	padding-inline: 5%;
 	background-color: var(--signature-color);
@@ -411,7 +425,7 @@ img {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	padding: 1rem;
+	padding-block: 1rem;
 }
 .headerNav {
 	position: relative;
@@ -439,6 +453,10 @@ img {
 		height: 10vh;
 		padding: 0rem;
 		z-index: 1000;
+	}
+	.headerLogo {
+		margin: 0;
+		padding: 0;
 	}
 	.header a {
 		padding: 0.5rem;

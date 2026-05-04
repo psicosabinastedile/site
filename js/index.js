@@ -24,8 +24,11 @@ const meta = {
 		greetings.createAll();
 		buildSpecialButtons.createAll(thisPage, "services");
 		buildInformationCard.createAll(thisPage, "avaliacaoNeuropsicologica", "left");
+		buildInformationCard.createAll(thisPage, "reabilitacao", "right");
+		buildInformationCard.createAll(thisPage, "estimulacao", "left");
 		buildInformationCard.createAll(thisPage, "psicoterapia", "right");
-		buildInformationCard.createAll(thisPage, "outrosServicos", "left");
+		buildInformationCard.createAll(thisPage, "palestras", "left");
+		buildInformationCard.createAll(thisPage, "aconselhamento", "right");
 
 		siteFooter.createAll();
 	},
@@ -39,7 +42,7 @@ const welcome = {
 		this.createRightSideContainer();
 	},
 	createSectionContainer() {
-		const div = sectionMethods.createSectionContainer("welcome");
+		const div = build.sectionContainer("welcome");
 		div.classList.add("welcome");
 	},
 	createLeftSide() {
@@ -101,7 +104,7 @@ const wellBeing = {
 		this.createRightSide();
 	},
 	createSectionContainer() {
-		const div = sectionMethods.createSectionContainer("wellBeing");
+		const div = build.sectionContainer("wellBeing");
 		div.classList.add("wellBeing");
 	},
 	createLeftSide() {
@@ -111,18 +114,10 @@ const wellBeing = {
 
 		container.classList.add("wellBeingLeft");
 
-		buildHeader();
-		buildTextContent();
-
-		function buildHeader() {
-			const text = textLibrary.home.wellBeing.header;
-			const h3 = build.h3(text);
-			container.append(h3);
-		}
-		function buildTextContent() {
-			const p = sectionMethods.createLoopContent(textLibrary.home.wellBeing.text);
-			container.append(p);
-		}
+		const {header, text} = textLibrary.home.wellBeing;
+		const h3 = build.h3(header);
+		const p = build.p(text);
+		container.append(h3, p);
 	},
 	createRightSide() {
 		const parentDiv = document.getElementById("wellBeing");
@@ -154,7 +149,7 @@ const greetings = {
 		this.createRightSide();
 	},
 	createSectionContainer() {
-		const div = sectionMethods.createSectionContainer("greetings");
+		const div = build.sectionContainer("greetings");
 		div.classList.add("greetings");
 	},
 	createLeftSide() {
@@ -179,18 +174,18 @@ const greetings = {
 
 		rightSide.classList.add("greetingsRight");
 
+		const {header, subHeader, content} = textLibrary.home.greetings;
 		buildHeader();
 		buildTextContent();
 		buildButton();
 
 		function buildHeader() {
-			const {header, subHeader} = textLibrary.home.greetings;
 			const h2 = build.h2(header);
 			const h4 = build.h4(subHeader);
 			rightSide.append(h2, h4);
 		}
 		function buildTextContent() {
-			const p = sectionMethods.createLoopContent(textLibrary.home.greetings.content);
+			const p = build.p(content);
 			rightSide.append(p);
 		}
 		function buildButton() {

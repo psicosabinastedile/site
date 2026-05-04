@@ -72,7 +72,7 @@ const buildTest = {
 		this.createIntro();
 	},
 	createContainer() {
-		const section = sectionMethods.createSectionContainer("quickTest");
+		const section = build.sectionContainer("quickTest");
 		section.classList.add("quickTest");
 	},
 	createIntro() {
@@ -232,8 +232,8 @@ const buildTest = {
 		}
 		function buildButton() {
 			const [text, link] = textObject.button;
-			const a = build.a(text, link, true);
-			a.classList.add(accentA);
+			const a = build.a(text, link, null, true);
+			a.classList.add("accentA");
 			return a;
 		}
 	},

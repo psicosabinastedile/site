@@ -5,7 +5,7 @@
 			{"label": "Sobre mim", "linkKey": "sobreMim"},
 			{"label": "Avaliação Neuropsicológica", "linkKey": "avaliacaoNeuropsicologica"},
 			{"label": "Psicoterapia", "linkKey": "psicoterapia"},
-			{"label": "Contato", "linkKey": "footer", "linkType": "hash"}
+			{"label": "Contato", "linkKey": "contato"}
 		]
 	},
 	"footer": {
@@ -62,9 +62,11 @@
 			"header": "Serviços Oferecidos",
 			"buttons": [
 				{"label": "Avaliação\nNeuropsicológica", "linkKey": "avaliacaoNeuropsicologica", "linkType": "hash"},
+				{"label": "Reabilitação Neuropsicológica", "linkKey": "reabilitacao", "linkType": "hash"},
+				{"label": "Estimulação\nCognitiva\nPreventiva", "linkKey": "estimulacao", "linkType": "hash"},
 				{"label": "Psicoterapia", "linkKey": "psicoterapia", "linkType": "hash"},
-				{"label": "Palestras", "linkKey": "outrosServicos", "linkType": "hash"},
-				{"label": "Aconselhamento\nde Pais", "linkKey": "outrosServicos", "linkType": "hash"}
+				{"label": "Palestras", "linkKey": "palestras", "linkType": "hash"},
+				{"label": "Aconselhamento\nde Pais", "linkKey": "aconselhamento", "linkType": "hash"}
 			]
 		},
 		"avaliacaoNeuropsicologica": {
@@ -79,6 +81,26 @@
 				{"label": "Mais informações", "linkKey": "avaliacaoNeuropsicologica"},
 				{"label": "Agende sua consulta!", "linkKey": "whatsapp"}
 			]
+		},
+		"reabilitacao": {
+			"header": "Reabilitação\nNeuropsicológica",
+			"content": [
+				{
+					"subheader": "O que é?",
+					"text": "A reabilitação neuropsicológica é um processo terapêutico estruturado que tem como objetivo promover a recuperação, compensação ou adaptação de funções cognitivas que foram afetadas por condições neurológicas ou psiquiátricas, como acidente vascular cerebral (AVC), traumatismo cranioencefálico, doenças neurodegenerativas ou dificuldades do neurodesenvolvimento.\n\nA partir dos resultados da avaliação neuropsicológica, é elaborado um plano de intervenção individualizado, focado em habilidades como atenção, memória, linguagem, funções executivas e aspectos socioemocionais. O trabalho envolve exercícios específicos, estratégias compensatórias e orientações para o cotidiano, buscando não apenas ganhos cognitivos, mas também maior autonomia, funcionalidade e qualidade de vida no dia a dia."
+				}
+			],
+			"button": [{"label": "Entre em contato!", "linkKey": "whatsapp"}]
+		},
+		"estimulacao": {
+			"header": "Estimulação\nCognitiva Preventiva",
+			"content": [
+				{
+					"subheader": "O que é?",
+					"text": "Trata-se de um serviço voltado à promoção e manutenção da saúde cognitiva ao longo da vida, indicado para pessoas que desejam preservar e aprimorar habilidades como memória, atenção, raciocínio e funções executivas, mesmo na ausência de déficits significativos.\n\nA partir de uma compreensão individual do funcionamento cognitivo e das demandas do cotidiano, são propostas atividades estruturadas, estratégias práticas e orientações personalizadas que favorecem o fortalecimento da reserva cognitiva e a prevenção de declínios futuros. O trabalho também considera fatores como estresse, estilo de vida e organização da rotina, contribuindo para um desempenho mais eficiente, autonomia e qualidade de vida."
+				}
+			],
+			"button": [{"label": "Entre em contato!", "linkKey": "whatsapp"}]
 		},
 		"psicoterapia": {
 			"header": "Psicoterapia\nIndividual",
@@ -97,13 +119,19 @@
 				{"label": "Agende sua consulta!", "linkKey": "whatsapp"}
 			]
 		},
-		"outrosServicos": {
-			"header": "Outros Serviços",
+		"palestras": {
+			"header": "Palestras",
 			"content": [
 				{
 					"subheader": "Palestras",
-					"text": "Ofereço palestras voltadas para escolas, empresas e comunidades, abordando temas relacionados à saúde mental, desenvolvimento cognitivo e emocional, transtornos do neurodesenvolvimento e estratégias de enfrentamento para o dia a dia. Elas são personalizadas para atender às necessidades e interesses específicos de cada público, promovendo conhecimento e sensibilização para questões importantes na vida pessoal e profissional."
-				},
+					"text": "As palestras são desenvolvidas com o objetivo de traduzir conhecimentos da neuropsicologia e da psicologia científica para diferentes públicos, de forma acessível, atualizada e aplicada à realidade cotidiana. Os encontros abordam temas como estresse psicossocial, saúde cognitiva, neurodesenvolvimento, interpretação de avaliações e promoção de bem-estar, podendo ser adaptados conforme as necessidades de instituições, empresas, escolas ou grupos específicos. Com embasamento científico e linguagem clara, as palestras buscam não apenas informar, mas também promover reflexões, ampliar repertórios e oferecer estratégias práticas que contribuam para a saúde mental, o desempenho e a qualidade de vida.\n\nTemas podem ser personalizados conforme a demanda da instituição."
+				}
+			],
+			"button": [{"label": "Entre em contato!", "linkKey": "whatsapp"}]
+		},
+		"aconselhamento": {
+			"header": "Aconselhamento\npara Pais",
+			"content": [
 				{
 					"subheader": "Aconselhamento para Pais",
 					"text": "Normalmente indicado após a avaliação psicológica, o aconselhamento para pais é um espaço dedicado a orientá-los sobre os desafios relacionados ao desenvolvimento cognitivo, emocional e comportamental de seus filhos. Com base nas particularidades de cada família, ofereço estratégias práticas e informações embasadas para lidar com dificuldades como ansiedade, manejo de comportamentos desafiadores, e apoio ao aprendizado e à socialização. O objetivo é fortalecer o vínculo familiar e capacitar os pais para promover o bem-estar e o desenvolvimento saudável de seus filhos."
@@ -498,6 +526,103 @@
 					"content": "Uma das implicações da técnica psicanalítica com pacientes adultos refere-se à importância de criar um espaço terapêutico seguro, no qual o paciente possa expressar livremente seus pensamentos e emoções, permitindo que conteúdos inconscientes venham à tona para serem compreendidos e elaborados no contexto da relação transferencial com o psicoterapeuta.\n\nPaciente menores de idade: Embora eu considere que o protagonista dos atendimentos seja a criança ou adolescente, a primeira sessão será com algum de seus responsáveis, pois conhecer a fundo sua história gestacional, assim como seus primeiros anos de vida são aspectos muito importantes para inicio de tratamento. Além disso, é no primeiro atendimento que combinamos alguns pontos mais burocráticos, como modalidade de pagamento e frequência dos atendimentos. Periodicamente, um atendimento é realizado apenas com os responsáveis para conferir progressos e sugerir ajustes na rotina familiar que podem contribuir com os atendimentos."
 				}
 			]
+		}
+	},
+	"contato": {
+		"faleConosco": {
+			"header": "Entre em contato comigo!",
+			"text": "Se você chegou até aqui, talvez esteja buscando entender melhor o seu momento ou o de alguém importante para você. A avaliação e o acompanhamento neuropsicológico podem ajudar a esclarecer dúvidas, identificar dificuldades e orientar caminhos possíveis.\n\nEstou à disposição para te ouvir e te orientar sobre como posso ajudar no seu caso.\n\nVocê pode entrar em contato diretamente pelo WhatsApp ou, se preferir, enviar uma mensagem pelo formulário ao lado. Responderei o mais breve possível.",
+			"content": [
+				{
+					"header": "Whatsapp",
+					"text": "Para dúvidas rápidas, orientações iniciais\n e agendamento de atendimentos.",
+					"link": "whatsapp"
+				},
+				{
+					"header": "Instagram",
+					"text": "Conteúdos informativos sobre avaliação,\nsaúde mental e funcionamento cognitivo.",
+					"link": "instagram"
+				},
+				{
+					"header": "E-Mail",
+					"text": "Para contatos formais, parcerias\nou outras solicitações.",
+					"link": "email"
+				}
+			]
+		},
+		"formulário": {
+			"header": "Prefere escrever?",
+			"text": "Preencha o formulário abaixo. Se possível, descreva brevemente o motivo do contato e para quem é o atendimento (você, um familiar, criança, adulto ou idoso). Isso me ajuda a te orientar de forma mais precisa desde o primeiro retorno.",
+			"campos": [
+				{
+					"label": "Nome Completo *",
+					"id": "name",
+					"name": "name",
+					"placeholder": "Digite seu nome",
+					"type": "text",
+					"required": true,
+					"minLength": 3,
+					"maxLength": 100,
+					"pattern": "^[A-Za-zÀ-ÖØ-öø-ÿ\\s]+$",
+					"title": "Por favor, insira apenas letras e espaços"
+				},
+				{
+					"label": "E-mail *",
+					"id": "email",
+					"name": "email",
+					"placeholder": "seuemail@email.com",
+					"type": "email",
+					"required": true,
+					"maxLength": 255,
+					"pattern": "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$",
+					"title": "Por favor, insira um e-mail válido"
+				},
+				{
+					"label": "Telefone*",
+					"id": "phone",
+					"name": "phone",
+					"placeholder": "(51) 99999-9999",
+					"type": "tel",
+					"required": true,
+					"minLength": 10,
+					"maxLength": 20,
+					"pattern": "^(\\d+|\\(\\d{2}\\)\\s\\d{4,5}-\\d{4})$",
+					"title": "Formato: (51) 99999-9999 ou 51999999999"
+				},
+				{
+					"label": "Título",
+					"id": "title",
+					"name": "title",
+					"placeholder": "Digite o assunto da mensagem",
+					"required": false,
+					"minLength": 10,
+					"maxLength": 100,
+					"title": "Mensagem deve ter entre 10 e 100 caracteres"
+				},
+				{
+					"label": "Mensagem *",
+					"id": "message",
+					"name": "message",
+					"placeholder": "Digite sua mensagem",
+					"required": true,
+					"minLength": 20,
+					"maxLength": 5000,
+					"title": "Mensagem deve ter entre 20 e 5000 caracteres"
+				}
+			],
+			"sendButton": {"text": "Enviar mensagem"}
+		},
+		"emailPopup": {
+			"success": {
+				"header": "Sucesso",
+				"text": "Sua mensagem foi enviada com sucesso.",
+				"icon": "bulletPoint"
+			},
+			"failure": {
+				"header": "Erro",
+				"text": "Houve um erro no envio de sua mensagem.\nTente novamente mais tarde ou envie-nos um e-mail diretamente.",
+				"icon": "erro"
+			}
 		}
 	},
 	"quizAnswer": {
